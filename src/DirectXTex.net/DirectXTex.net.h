@@ -4,10 +4,20 @@
 
 using namespace System;
 
-namespace DirectXTexnet {
+namespace DirectXTexNet
+{
+	// Forward decl.
+	ref class ScratchImage;
 
-	public ref class Class1
+	// Static class containing the global functions for file handling.
+	public ref class DirectXTex
 	{
-		// TODO: Add your methods for this class here.
+	public:
+
+		static ScratchImage^ LoadFromDDSFile(String^ filename);
+		static ScratchImage^ LoadFromWICFile(String^ filename);
+		static ScratchImage^ LoadFromTGAFile(String^ filename);
+
+		static ScratchImage^ Create2D(IntPtr data, int pitch, int width, int height, unsigned int format);
 	};
 }
