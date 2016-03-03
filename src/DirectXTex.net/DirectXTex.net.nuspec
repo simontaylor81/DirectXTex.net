@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DirectXTexNet</id>
+    <version>0.1.0</version>
+    <authors>Simon Taylor</authors>
+    <owners>Simon Taylor</owners>
+    <licenseUrl>https://github.com/simontaylor81/DirectXTex.net/raw/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/simontaylor81/DirectXTex.net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET wrapper around the DirectXTex library.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>DirectXTex DirectX texture image</tags>
+  </metadata>
+
+  <files>
+    <file src="..\..\bin/Win32\Release\DirectXTex.net.dll" target="lib\net45" />
+  </files>
+</package>
