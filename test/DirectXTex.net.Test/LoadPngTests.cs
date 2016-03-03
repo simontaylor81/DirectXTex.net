@@ -32,7 +32,7 @@ namespace DirectXTexNet.Test
 			}
 		}
 
-		// Test for WIC loading path, which we can compare to the result of loading using System.Drawing.
+		// Test for TGA loading path.
 		[Test]
 		public void LoadTga()
 		{
@@ -43,6 +43,25 @@ namespace DirectXTexNet.Test
 			using (var image = DirectXTex.LoadFromTGAFile(path))
 			{
 				// Can't load a tga with System.Drawing, so load an identical png.
+				using (var expected = new Bitmap(refPath))
+				{
+					// Assert that they match.
+					AssertEqual(image, expected);
+				}
+			}
+		}
+
+		// Test for DDS loading path.
+		[Test]
+		public void LoadDds()
+		{
+			var path = GetImagePath("ThisIsATest.dds");
+			var refPath = GetImagePath("ThisIsATest.png");
+
+			// Load image with DirectXTex.
+			using (var image = DirectXTex.LoadFromDDSFile(path))
+			{
+				// Can't load a dds with System.Drawing, so load an identical png.
 				using (var expected = new Bitmap(refPath))
 				{
 					// Assert that they match.
