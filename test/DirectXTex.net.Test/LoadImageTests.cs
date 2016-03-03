@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace DirectXTexNet.Test
 {
-	public class LoadPngTests
+	public class LoadImageTests
 	{
 		// Test for WIC loading path, which we can compare to the result of loading using System.Drawing.
 		[TestCase("ThisIsATest.png")]
