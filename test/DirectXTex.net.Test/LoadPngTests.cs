@@ -89,11 +89,11 @@ namespace DirectXTexNet.Test
 			Assert.That(bytes, Is.EqualTo(expected.GetRawBytesRGBA()));
 		}
 
-		// Assembly is in bin/<config>/
+		// Assembly is in bin/<platform>/<config>/
 		private string GetImagePath(string filename) =>
 			Path.Combine(
 				Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-				"../../Images",
+				"../../../Images",
 				filename);
 	}
 }
