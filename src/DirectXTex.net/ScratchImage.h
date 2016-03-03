@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "TexMetadata.h"
+
 using namespace System;
 
 // Forward decls.
@@ -19,6 +21,12 @@ public ref class ScratchImage : public IDisposable
 public:
 	// Create a D3D11 texture from the image.
 	IntPtr CreateTexture(IntPtr device);
+
+	// Get image meta-data.
+	property TexMetadata MetaData
+	{
+		TexMetadata get();
+	}
 
 	// Get the raw bytes for a sub-image.
 	array<byte>^ GetRawBytes(UInt32 arrayItem, UInt32 mip);

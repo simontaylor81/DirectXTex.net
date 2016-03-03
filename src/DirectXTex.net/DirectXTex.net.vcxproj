@@ -153,6 +153,7 @@
     <ClInclude Include="DirectXTex.net.h" />
     <ClInclude Include="ScratchImage.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="TexMetadata.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DirectXTex.net.Test.Util;
+using DirectXTexNet.Test.Util;
 using NUnit.Framework;
 
 namespace DirectXTexNet.Test
@@ -23,13 +23,11 @@ namespace DirectXTexNet.Test
 			// Load image with DirectXTex.
 			using (var image = DirectXTex.LoadFromWICFile(path))
 			{
-				var bytes = image.GetRawBytes(0, 0);
-
 				// Load the same image with System.Drawing.
 				using (var expected = new Bitmap(path))
 				{
 					// Assert that they match.
-					Assert.That(bytes, Is.EqualTo(expected.GetRawBytesRGBA()));
+					AssertEqual(image, expected);
 				}
 			}
 		}
@@ -44,15 +42,32 @@ namespace DirectXTexNet.Test
 			// Load image with DirectXTex.
 			using (var image = DirectXTex.LoadFromTGAFile(path))
 			{
-				var bytes = image.GetRawBytes(0, 0);
-
 				// Can't load a tga with System.Drawing, so load an identical png.
 				using (var expected = new Bitmap(refPath))
 				{
 					// Assert that they match.
-					Assert.That(bytes, Is.EqualTo(expected.GetRawBytesRGBA()));
+					AssertEqual(image, expected);
 				}
 			}
+		}
+
+		private void AssertEqual(ScratchImage image, Bitmap expected)
+		{
+			// Check various meta-data.
+			var metaData = image.MetaData;
+			Assert.AreEqual(expected.Width, metaData.width);
+			Assert.AreEqual(expected.Height, metaData.height);
+			Assert.AreEqual(1, metaData.depth);
+			Assert.AreEqual(TexDimension.Texture2D, metaData.dimension);
+			Assert.AreEqual(1, metaData.arraySize);
+			Assert.AreEqual(1, metaData.mipLevels);
+
+			// DXGI_FORMAT_R8G8B8A8_UNORM or DXGI_FORMAT_R8G8B8A8_UNORM_SRGB
+			Assert.That(metaData.format, Is.EqualTo(28).Or.EqualTo(29));
+
+			// Check raw contents match.
+			var bytes = image.GetRawBytes(0, 0);
+			Assert.That(bytes, Is.EqualTo(expected.GetRawBytesRGBA()));
 		}
 
 		// Assembly is in bin/<config>/

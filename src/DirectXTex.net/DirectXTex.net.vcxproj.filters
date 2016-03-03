@@ -20,6 +20,9 @@
     <ClInclude Include="ScratchImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TexMetadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectXTex.net.cpp">

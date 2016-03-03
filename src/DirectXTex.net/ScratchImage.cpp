@@ -43,6 +43,13 @@ IntPtr ScratchImage::CreateTexture(IntPtr device)
 	return IntPtr(texture);
 }
 
+// Get image meta data.
+TexMetadata ScratchImage::MetaData::get()
+{
+	return TexMetadata(scratchImage_->GetMetadata());
+}
+
+
 // Get the raw bytes for a sub-image.
 array<byte>^ ScratchImage::GetRawBytes(UInt32 arrayItem, UInt32 mip)
 {
