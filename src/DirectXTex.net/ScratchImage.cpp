@@ -40,7 +40,43 @@ IntPtr ScratchImage::CreateTexture(IntPtr device)
 	Marshal::ThrowExceptionForHR(hr);
 
 	// Convert back to SlimDX type.
-	return System::IntPtr(texture);
+	return IntPtr(texture);
+}
+
+// Get the raw bytes for a sub-image.
+array<byte>^ ScratchImage::GetRawBytes(UInt32 arrayItem, UInt32 mip)
+{
+	auto metaData = scratchImage_->GetMetadata();
+
+	if (arrayItem < 0 || arrayItem >= metaData.arraySize)
+	{
+		throw gcnew ArgumentException("Array item index out of bounds", "arrayItem");
+	}
+	if (mip < 0 || mip >= metaData.mipLevels)
+	{
+		throw gcnew ArgumentException("Mip index out of bounds", "mip");
+	}
+
+	auto image = scratchImage_->GetImage(mip, arrayItem, 0);
+	if (image == nullptr)
+	{
+		throw gcnew ArgumentException("Could not find image with the given parameters.");
+	}
+
+	const int rowSize = int(image->width) * int(DirectX::BitsPerPixel(image->format)) / 8;
+	const int sizeInBytes = int(image->height) * rowSize;
+	auto result = gcnew array<byte>(sizeInBytes);
+
+	// Copy row by row.
+	int destIndex = 0;
+	for (size_t y = 0; y < image->height; y++)
+	{
+		uint8_t* src = image->pixels + y * image->rowPitch;
+		Marshal::Copy(IntPtr(src), result, destIndex, rowSize);
+		destIndex += rowSize;
+	}
+
+	return result;
 }
 
 void ScratchImage::GenerateMipMaps()
