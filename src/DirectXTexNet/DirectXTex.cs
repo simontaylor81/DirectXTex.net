@@ -32,11 +32,11 @@ namespace DirectXTexNet
 
 		static DirectXTex()
 		{
-			AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
+			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 		}
 
 		// Custom assembly resolver to find the architecture-specific implementation assembly.
-		private static Assembly AssemblyResolve(object sender, ResolveEventArgs args)
+		private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
 		{
 			if (args.Name.StartsWith("DirectXTexNetImpl", StringComparison.OrdinalIgnoreCase))
 			{
