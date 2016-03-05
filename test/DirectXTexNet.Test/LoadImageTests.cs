@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DirectXTexNet.Test.Util;
@@ -89,11 +90,32 @@ namespace DirectXTexNet.Test
 			Assert.That(bytes, Is.EqualTo(expected.GetRawBytesRGBA()));
 		}
 
-		// Assembly is in bin/<platform>/<config>/
-		private string GetImagePath(string filename) =>
-			Path.Combine(
-				Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
-				"../../../Images",
-				filename);
+		// Assembly is in bin/<config>/
+		private string GetImagePath(string filename)
+		{
+			// Directory we're looking for.
+			var dirToFind = "Images";
+
+			// Search up directory tree starting at assembly path looking for 'Images' dir.
+			var searchPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			while (true)
+			{
+				var testPath = Path.Combine(searchPath, dirToFind);
+				if (Directory.Exists(testPath))
+				{
+					// Found it!
+					return Path.Combine(testPath, filename);
+				}
+
+				// Move up one directory.
+				var newSearchPath = Path.GetFullPath(Path.Combine(searchPath, ".."));
+				if (newSearchPath == searchPath)
+				{
+					// Didn't move up, so we're at the root.
+					throw new FileNotFoundException($"Could not find '{dirToFind}' directory.");
+				}
+				searchPath = newSearchPath;
+			}
+		}
 	}
 }

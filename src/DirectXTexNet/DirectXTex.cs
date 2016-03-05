@@ -41,8 +41,8 @@ namespace DirectXTexNet
 			if (args.Name.StartsWith("DirectXTexNetImpl", StringComparison.OrdinalIgnoreCase))
 			{
 				var path = Path.Combine(
-					Path.GetDirectoryName(typeof(DirectXTex).Assembly.Location),    // Out path
-					Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE"),   // x86 or x64
+					Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),    // Our path
+					Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE"),		// x86 or x64
 					"DirectXTexNetImpl.dll");
 
 				return Assembly.LoadFile(path);
