@@ -5,12 +5,9 @@ platform: x86
 
 before_build:
   - cmd: nuget restore
-  - cmd: set
-  - cmd: echo {version}
-  - cmd: echo {build}
 
 after_test:
-  - cmd: nuget pack .\src\DirectXTex.net\DirectXTex.net.nuspec
+  - cmd: nuget pack .\src\DirectXTex.net\DirectXTex.net.nuspec -Version %APPVEYOR_BUILD_VERSION%
   
 artifacts:
   - path: .\*.nupkg
