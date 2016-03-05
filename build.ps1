@@ -2,6 +2,8 @@
 $config = 'Release'
 $platforms = 'x86', 'x64'
 
+echo $psversiontable
+
 # Hook up AppVeyor logger if it exists.
 if (Test-Path 'C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll')
 {
