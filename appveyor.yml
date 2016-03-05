@@ -1,12 +1,10 @@
 version: 0.1.{build}
 
-configuration: Release
-platform:
-  - x86
-  - x64
-
 before_build:
   - cmd: nuget restore
+
+build_script:
+  - ps: .\build.ps1
 
 after_test:
   - cmd: nuget pack .\src\DirectXTexNet\DirectXTexNet.nuspec -Version %APPVEYOR_BUILD_VERSION%
