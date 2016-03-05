@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- This file adds build targets to copy the architecture-specific assemblies to the output directory.
+     It is partially based on the SQLite code here: http://system.data.sqlite.org/index.html/artifact/c493585946cb350d -->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- ItemGroup containing the impl assemblies. -->
+  <ItemGroup>
+    <DirectXTexNetImplFiles Include="$(MSBuildThisFileDirectory)**\DirectXTexNetImpl.*" />
+  </ItemGroup>
+  
+  <!-- Target that copies the files to the output directory. -->
+  <Target Name="CopyDirectXTexNetImplFiles"
+          Inputs="@(DirectXTexNetImplFiles)"
+          Outputs="@(DirectXTexNetImplFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')">
+    <Copy SourceFiles="@(DirectXTexNetImplFiles)"
+          DestinationFiles="@(DirectXTexNetImplFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+  
+  <!-- Target that cleans up the impl files. -->
+  <Target Name="CleanDirectXTexNetImplFiles">
+    <Delete Files="@(DirectXTexNetImplFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+  
+  <!-- Hook up to the actual build targets -->
+  <PropertyGroup>
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      CopyDirectXTexNetImplFiles;
+    </BuildDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanDirectXTexNetImplFiles;
+    </CleanDependsOn>
+  </PropertyGroup>
+</Project>

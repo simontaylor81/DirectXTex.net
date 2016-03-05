@@ -49,6 +49,10 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DirectXTexNet.nuspec" />
+    <None Include="DirectXTexNet.targets" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <!-- Don't warn about processor architecture mismatch as we use a custom resolver to load the right one. -->
@@ -56,26 +60,21 @@
       None
     </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
-  
   <PropertyGroup>
     <CleanDependsOn>
       $(CleanDependsOn);
       CleanImplBinaries;
     </CleanDependsOn>
   </PropertyGroup>
-
   <!-- Copy architecture-specific assemblies from Impl project. -->
   <Target Name="BeforeBuild">
     <ItemGroup>
-      <DirectXTexImplBinaries_x86 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\Win32\$(Configuration)\DirectXTexNetImpl.*"/>
-      <DirectXTexImplBinaries_x64 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\x64\$(Configuration)\DirectXTexNetImpl.*"/>
+      <DirectXTexImplBinaries_x86 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\Win32\$(Configuration)\DirectXTexNetImpl.*" />
+      <DirectXTexImplBinaries_x64 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\x64\$(Configuration)\DirectXTexNetImpl.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(DirectXTexImplBinaries_x86)"
-          DestinationFolder="$(OutputPath)\x86" />
-    <Copy SourceFiles="@(DirectXTexImplBinaries_x64)"
-          DestinationFolder="$(OutputPath)\x64" />
+    <Copy SourceFiles="@(DirectXTexImplBinaries_x86)" DestinationFolder="$(OutputPath)\x86" />
+    <Copy SourceFiles="@(DirectXTexImplBinaries_x64)" DestinationFolder="$(OutputPath)\x64" />
   </Target>
-  
   <!-- Clean them too. -->
   <Target Name="CleanImplBinaries">
     <RemoveDir Directories="$(TargetDir)x86; $(TargetDir)x64" />
