@@ -46,6 +46,7 @@
     <ProjectReference Include="..\DirectXTexNetImpl\DirectXTexNetImpl.vcxproj">
       <Project>{c92a44e6-5563-46a5-83a7-eb700eb75a8d}</Project>
       <Name>DirectXTexNetImpl</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
