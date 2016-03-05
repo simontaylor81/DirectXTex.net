@@ -1,7 +1,9 @@
 version: 0.1.{build}
 
 configuration: Release
-platform: x86
+platform:
+  - x86
+  - x64
 
 before_build:
   - cmd: nuget restore
