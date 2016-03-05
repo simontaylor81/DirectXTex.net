@@ -103,28 +103,4 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  
-  <PropertyGroup>
-    <CleanDependsOn>
-      $(CleanDependsOn);
-      CleanImplBinaries;
-    </CleanDependsOn>
-  </PropertyGroup>
-
-  <!-- Copy architecture-specific assemblies. -->
-  <Target Name="BeforeBuild">
-    <ItemGroup>
-      <DirectXTexImplBinaries_x86 Include="$(MSBuildProjectDirectory)\..\..\src\DirectXTexNet\bin\$(Configuration)\x86\*"/>
-      <DirectXTexImplBinaries_x64 Include="$(MSBuildProjectDirectory)\..\..\src\DirectXTexNet\bin\$(Configuration)\x64\*"/>
-    </ItemGroup>
-    <Copy SourceFiles="@(DirectXTexImplBinaries_x86)"
-          DestinationFolder="$(OutputPath)\x86" />
-    <Copy SourceFiles="@(DirectXTexImplBinaries_x64)"
-          DestinationFolder="$(OutputPath)\x64" />
-  </Target>
-  
-  <!-- Clean them too. -->
-  <Target Name="CleanImplBinaries">
-    <RemoveDir Directories="$(TargetDir)x86; $(TargetDir)x64" />
-  </Target>
 </Project>

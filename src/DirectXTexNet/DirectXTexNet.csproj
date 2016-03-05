@@ -54,29 +54,39 @@
     <None Include="DirectXTexNet.targets" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
   <PropertyGroup>
     <!-- Don't warn about processor architecture mismatch as we use a custom resolver to load the right one. -->
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
       None
     </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
-  <PropertyGroup>
-    <CleanDependsOn>
-      $(CleanDependsOn);
-      CleanImplBinaries;
-    </CleanDependsOn>
-  </PropertyGroup>
+
   <!-- Copy architecture-specific assemblies from Impl project. -->
-  <Target Name="BeforeBuild">
+  <PropertyGroup>
+    <AssignTargetPathsDependsOn>
+      $(AssignTargetPathsDependsOn);
+      GetDirectXTexNetImplFilesTarget;
+    </AssignTargetPathsDependsOn>
+  </PropertyGroup>
+  
+  <!-- The actual lists of files we want to copy. -->
+  <ItemGroup>
+    <DirectXTexImplBinaries_x86 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\Win32\$(Configuration)\DirectXTexNetImpl.*" />
+    <DirectXTexImplBinaries_x64 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\x64\$(Configuration)\DirectXTexNetImpl.*" />
+  </ItemGroup>
+
+  <!-- Target to get the list of files to copy along with their target path. -->
+  <Target Name="GetDirectXTexNetImplFilesTarget">
     <ItemGroup>
-      <DirectXTexImplBinaries_x86 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\Win32\$(Configuration)\DirectXTexNetImpl.*" />
-      <DirectXTexImplBinaries_x64 Include="$(MSBuildProjectDirectory)\..\DirectXTexNetImpl\bin\x64\$(Configuration)\DirectXTexNetImpl.*" />
+      <ContentWithTargetPath Include="@(DirectXTexImplBinaries_x86)">
+        <TargetPath>x86\%(Filename)%(Extension)</TargetPath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </ContentWithTargetPath>
+      <ContentWithTargetPath Include="@(DirectXTexImplBinaries_x64)">
+        <TargetPath>%x64%\(Filename)%(Extension)</TargetPath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </ContentWithTargetPath>
     </ItemGroup>
-    <Copy SourceFiles="@(DirectXTexImplBinaries_x86)" DestinationFolder="$(OutputPath)\x86" />
-    <Copy SourceFiles="@(DirectXTexImplBinaries_x64)" DestinationFolder="$(OutputPath)\x64" />
-  </Target>
-  <!-- Clean them too. -->
-  <Target Name="CleanImplBinaries">
-    <RemoveDir Directories="$(TargetDir)x86; $(TargetDir)x64" />
   </Target>
 </Project>
