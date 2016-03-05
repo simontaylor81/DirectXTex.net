@@ -12,7 +12,7 @@ using namespace System::Security::Permissions;
 // associated with an assembly.
 //
 [assembly:AssemblyTitleAttribute(L"DirectXTexNetImpl")];
-[assembly:AssemblyDescriptionAttribute(L"Minimal .NET wrapper around the DirectXTex library")];
+[assembly:AssemblyDescriptionAttribute(L"C++ implementation of a minimal .NET wrapper around the DirectXTex library")];
 [assembly:AssemblyConfigurationAttribute(L"")];
 [assembly:AssemblyCompanyAttribute(L"Simon Taylor")];
 [assembly:AssemblyProductAttribute(L"DirectXTexNet")];

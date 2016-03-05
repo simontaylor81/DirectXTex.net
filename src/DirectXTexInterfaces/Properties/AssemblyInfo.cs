@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DirectXTexInterfaces")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Interfaces used by DirectXTex.net")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DirectXTexInterfaces")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("Simon Taylor")]
+[assembly: AssemblyProduct("DirectXTexNet")]
+[assembly: AssemblyCopyright("Copyright © Simon Taylor 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
