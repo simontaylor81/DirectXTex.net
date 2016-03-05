@@ -11,7 +11,7 @@ using namespace System::Security::Permissions;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly:AssemblyTitleAttribute(L"DirectXTexNet")];
+[assembly:AssemblyTitleAttribute(L"DirectXTexNetImpl")];
 [assembly:AssemblyDescriptionAttribute(L"Minimal .NET wrapper around the DirectXTex library")];
 [assembly:AssemblyConfigurationAttribute(L"")];
 [assembly:AssemblyCompanyAttribute(L"Simon Taylor")];

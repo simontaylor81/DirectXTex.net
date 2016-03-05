@@ -75,9 +75,9 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DirectXTexNet\DirectXTexNet.vcxproj">
+    <ProjectReference Include="..\..\src\DirectXTexNetImpl\DirectXTexNetImpl.vcxproj">
       <Project>{c92a44e6-5563-46a5-83a7-eb700eb75a8d}</Project>
-      <Name>DirectXTexNet</Name>
+      <Name>DirectXTexNetImpl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

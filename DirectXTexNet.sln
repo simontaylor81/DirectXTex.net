@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTexNet", "src\DirectXTexNet\DirectXTexNet.vcxproj", "{C92A44E6-5563-46A5-83A7-EB700EB75A8D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTexNetImpl", "src\DirectXTexNetImpl\DirectXTexNetImpl.vcxproj", "{C92A44E6-5563-46A5-83A7-EB700EB75A8D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTex", "src\DirectXTex\DirectXTex\DirectXTex_Desktop_2015.vcxproj", "{371B9FA9-4C90-4AC6-A123-ACED756D6C77}"
 EndProject
