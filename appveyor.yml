@@ -7,7 +7,7 @@ before_build:
   - cmd: nuget restore
 
 after_test:
-  - cmd: nuget pack .\src\DirectXTex.net\DirectXTex.net.nuspec -Version %APPVEYOR_BUILD_VERSION%
+  - cmd: nuget pack .\src\DirectXTexNet\DirectXTexNet.nuspec -Version %APPVEYOR_BUILD_VERSION%
   
 artifacts:
   - path: .\*.nupkg
