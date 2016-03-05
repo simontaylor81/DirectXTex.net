@@ -1,34 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- This file adds build targets to copy the architecture-specific assemblies to the output directory.
-     It is partially based on the SQLite code here: http://system.data.sqlite.org/index.html/artifact/c493585946cb350d -->
+<!-- This file instructs msbuild to copy the architecture-specific assemblies to the output directory. -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- ItemGroup containing the impl assemblies. -->
+  <!-- We use AssignTargetPaths to hook our files into the content file copying process.
+       This is better than copy manually, as it is recursive for dependent projects, so
+       you don't have to add the nuget package to projects that depend on the project that uses it. -->
+  <PropertyGroup>
+    <AssignTargetPathsDependsOn>
+      $(AssignTargetPathsDependsOn);
+      GetDirectXTexNetImplFilesTarget;
+    </AssignTargetPathsDependsOn>
+  </PropertyGroup>
+  
+  <!-- The actual list of files we want to copy. -->
   <ItemGroup>
     <DirectXTexNetImplFiles Include="$(MSBuildThisFileDirectory)**\DirectXTexNetImpl.*" />
   </ItemGroup>
   
-  <!-- Target that copies the files to the output directory. -->
-  <Target Name="CopyDirectXTexNetImplFiles"
-          Inputs="@(DirectXTexNetImplFiles)"
-          Outputs="@(DirectXTexNetImplFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')">
-    <Copy SourceFiles="@(DirectXTexNetImplFiles)"
-          DestinationFiles="@(DirectXTexNetImplFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+  <!-- Target to get the list of files to copy along with their target path. -->
+  <Target Name="GetDirectXTexNetImplFilesTarget">
+    <ItemGroup>
+      <ContentWithTargetPath Include="@(DirectXTexNetImplFiles)">
+        <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </ContentWithTargetPath>
+    </ItemGroup>
   </Target>
-  
-  <!-- Target that cleans up the impl files. -->
-  <Target Name="CleanDirectXTexNetImplFiles">
-    <Delete Files="@(DirectXTexNetImplFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" />
-  </Target>
-  
-  <!-- Hook up to the actual build targets -->
-  <PropertyGroup>
-    <BuildDependsOn>
-      $(BuildDependsOn);
-      CopyDirectXTexNetImplFiles;
-    </BuildDependsOn>
-    <CleanDependsOn>
-      $(CleanDependsOn);
-      CleanDirectXTexNetImplFiles;
-    </CleanDependsOn>
-  </PropertyGroup>
+ 
 </Project>
