@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-#include "DirectXTex.net.h"
+#include "DirectXTexNet.h"
 #include "ScratchImage.h"
 
 using namespace System::Runtime::InteropServices;

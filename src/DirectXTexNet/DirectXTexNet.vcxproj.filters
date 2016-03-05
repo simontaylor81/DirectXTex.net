@@ -11,7 +11,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DirectXTex.net.h">
+    <ClInclude Include="DirectXTexNet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Stdafx.h">
@@ -25,7 +25,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DirectXTex.net.cpp">
+    <ClCompile Include="DirectXTexNet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -39,6 +39,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DirectXTex.net.nuspec" />
+    <None Include="DirectXTexNet.nuspec" />
   </ItemGroup>
 </Project>

@@ -150,14 +150,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DirectXTex.net.h" />
+    <ClInclude Include="DirectXTexNet.h" />
     <ClInclude Include="ScratchImage.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="TexMetadata.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="DirectXTex.net.cpp" />
+    <ClCompile Include="DirectXTexNet.cpp" />
     <ClCompile Include="ScratchImage.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -172,7 +172,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DirectXTex.net.nuspec" />
+    <None Include="DirectXTexNet.nuspec" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

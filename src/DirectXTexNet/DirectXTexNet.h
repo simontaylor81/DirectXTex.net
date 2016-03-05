@@ -1,4 +1,4 @@
-// DirectXTex.net.h
+// DirectXTexNet.h
 
 #pragma once
 

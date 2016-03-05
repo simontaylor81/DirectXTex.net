@@ -7,8 +7,8 @@
     <ProjectGuid>{3304455A-F4E3-424C-B79A-25A475A5428C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DirectXTex.net.Test</RootNamespace>
-    <AssemblyName>DirectXTex.net.Test</AssemblyName>
+    <RootNamespace>DirectXTexNet.Test</RootNamespace>
+    <AssemblyName>DirectXTexNet.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -75,9 +75,9 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DirectXTex.net\DirectXTex.net.vcxproj">
+    <ProjectReference Include="..\..\src\DirectXTexNet\DirectXTexNet.vcxproj">
       <Project>{c92a44e6-5563-46a5-83a7-eb700eb75a8d}</Project>
-      <Name>DirectXTex.net</Name>
+      <Name>DirectXTexNet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
