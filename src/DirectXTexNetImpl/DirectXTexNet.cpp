@@ -1,8 +1,8 @@
-// Implementation of the DirectXTex class.
+// This is the main DLL file.
 
 #include "stdafx.h"
 
-#include "DirectXTex.h"
+#include "DirectXTexNet.h"
 #include "ScratchImage.h"
 
 using namespace System::Runtime::InteropServices;
