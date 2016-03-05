@@ -4,7 +4,10 @@ configuration: Release
 platform: x86
 
 before_build:
-- cmd: nuget restore
+  - cmd: nuget restore
 
-build:
-  publish_nuget: true
+after_test:
+  - cmd: nuget pack .\src\DirectXTex.net\DirectXTex.net.nuspec
+  
+artifacts:
+  - path: DirectXTex.net.nupkg
