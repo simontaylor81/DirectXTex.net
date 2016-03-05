@@ -32,22 +32,27 @@ namespace DirectXTexNet
 
 		static DirectXTex()
 		{
-			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 		}
 
 		// Custom assembly resolver to find the architecture-specific implementation assembly.
-		private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		private static Assembly AssemblyResolve(object sender, ResolveEventArgs args)
 		{
 			if (args.Name.StartsWith("DirectXTexNetImpl", StringComparison.OrdinalIgnoreCase))
 			{
 				var path = Path.Combine(
 					Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),    // Our path
-					Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE"),		// x86 or x64
+					ArchitectureMoniker,
 					"DirectXTexNetImpl.dll");
 
+				Console.WriteLine("Looking in " + path);
 				return Assembly.LoadFile(path);
 			}
 			return null;
 		}
+
+		// Note: currently no support for ARM.
+		// Don't use %PROCESSOR_ARCHITECTURE% as it calls x64 'AMD64'.
+		private static string ArchitectureMoniker => Environment.Is64BitProcess ? "x64" : "x86";
 	}
 }
