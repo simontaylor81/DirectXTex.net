@@ -49,11 +49,11 @@ inline TexMetadata TexMetadataFromNative(DirectX::TexMetadata native)
 {
 	TexMetadata result;
 
-	result.width = native.width;
-	result.height = native.height;
-	result.depth = native.depth;
-	result.arraySize = native.arraySize;
-	result.mipLevels = native.mipLevels;
+	result.width = (UInt32)native.width;
+	result.height = (UInt32)native.height;
+	result.depth = (UInt32)native.depth;
+	result.arraySize = (UInt32)native.arraySize;
+	result.mipLevels = (UInt32)native.mipLevels;
 	result.miscFlags = native.miscFlags;
 	result.miscFlags2 = native.miscFlags2;
 	result.format = native.format;
