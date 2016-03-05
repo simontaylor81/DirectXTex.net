@@ -12,7 +12,7 @@ if (Test-Path 'C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll')
 
 foreach ($platform in $platforms)
 {
-	& msbuild 'DirectXTexNet.sln' "/property:Configuration=$config" "/property:Platform=$platform" '/verbosity:Minimal' $loggerParam
+	& msbuild 'DirectXTexNet.sln' "/property:Configuration=$config" "/property:Platform=$platform" '/verbosity:Minimal' '--%' $loggerParam
 	if (!$?)
 	{
 		throw "Build failed"
