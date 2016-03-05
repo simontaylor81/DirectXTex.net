@@ -84,7 +84,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </ContentWithTargetPath>
       <ContentWithTargetPath Include="@(DirectXTexImplBinaries_x64)">
-        <TargetPath>%x64%\(Filename)%(Extension)</TargetPath>
+        <TargetPath>x64\%(Filename)%(Extension)</TargetPath>
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </ContentWithTargetPath>
     </ItemGroup>
