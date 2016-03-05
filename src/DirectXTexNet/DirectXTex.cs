@@ -40,15 +40,24 @@ namespace DirectXTexNet
 		{
 			if (args.Name.StartsWith("DirectXTexNetImpl", StringComparison.OrdinalIgnoreCase))
 			{
-				var path = Path.Combine(
-					Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),    // Our path
-					ArchitectureMoniker,
-					"DirectXTexNetImpl.dll");
+				var assembly = Assembly.GetExecutingAssembly();
+				var path = GetAssemblyPath(Path.GetDirectoryName(assembly.Location));
+
+				if (!File.Exists(path))
+				{
+					// If we can't find the file, try using the CodeBase instead (which can
+					// be different if using shadow copy).
+					// CodeBase is a uri, so must parse out the filename.
+					path = GetAssemblyPath(Path.GetDirectoryName(new Uri(assembly.CodeBase).AbsolutePath));
+				}
 
 				return Assembly.LoadFile(path);
 			}
+
 			return null;
 		}
+
+		private static string GetAssemblyPath(string dir) => Path.Combine(dir, ArchitectureMoniker, "DirectXTexNetImpl.dll");
 
 		// Note: currently no support for ARM.
 		// Don't use %PROCESSOR_ARCHITECTURE% as it calls x64 'AMD64'.
