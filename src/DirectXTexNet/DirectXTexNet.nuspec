@@ -21,7 +21,7 @@
   </metadata>
 
   <files>
-    <file src="bin\Debug\DirectXTexNet.dll" target="lib\net45" />
+    <file src="bin\Release\DirectXTexNet.dll" target="lib\net45" />
     <file src="bin\Release\DirectXTexInterfaces.dll" target="lib\net45" />
     <file src="bin\Release\x86\DirectXTexNetImpl.dll" target="build\x86" />
     <file src="bin\Release\x64\DirectXTexNetImpl.dll" target="build\x64" />
