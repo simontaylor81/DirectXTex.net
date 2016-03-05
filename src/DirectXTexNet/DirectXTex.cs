@@ -45,7 +45,6 @@ namespace DirectXTexNet
 					ArchitectureMoniker,
 					"DirectXTexNetImpl.dll");
 
-				Console.WriteLine("Looking in " + path);
 				return Assembly.LoadFile(path);
 			}
 			return null;
