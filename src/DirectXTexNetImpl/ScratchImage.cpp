@@ -7,6 +7,8 @@ using namespace System::Runtime::InteropServices;
 
 namespace DirectXTexNet
 {
+namespace Impl
+{
 
 //--------------------------------------------------------------------------------------------------
 // ScratchImage implementation.
@@ -46,7 +48,7 @@ IntPtr ScratchImage::CreateTexture(IntPtr device)
 // Get image meta data.
 TexMetadata ScratchImage::MetaData::get()
 {
-	return TexMetadata(scratchImage_->GetMetadata());
+	return TexMetadataFromNative(scratchImage_->GetMetadata());
 }
 
 
@@ -187,4 +189,5 @@ void ScratchImage::CreateEmptyMipChain()
 	}
 }
 
+}
 }

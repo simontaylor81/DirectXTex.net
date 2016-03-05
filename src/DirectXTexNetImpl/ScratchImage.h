@@ -14,28 +14,30 @@ namespace DirectX
 
 namespace DirectXTexNet
 {
+namespace Impl
+{
 
 // Mirror of DirectXTex ScratchImage class.
-public ref class ScratchImage : public IDisposable
+public ref class ScratchImage : public IScratchImage
 {
 public:
 	// Create a D3D11 texture from the image.
-	IntPtr CreateTexture(IntPtr device);
+	virtual IntPtr CreateTexture(IntPtr device);
 
 	// Get image meta-data.
 	property TexMetadata MetaData
 	{
-		TexMetadata get();
+		virtual TexMetadata get();
 	}
 
 	// Get the raw bytes for a sub-image.
-	array<byte>^ GetRawBytes(UInt32 arrayItem, UInt32 mip);
+	virtual array<byte>^ GetRawBytes(UInt32 arrayItem, UInt32 mip);
 
 	// Generate mipmaps for this image.
-	void GenerateMipMaps();
+	virtual void GenerateMipMaps();
 
 	// Create an empty mip chain for this image.
-	void CreateEmptyMipChain();
+	virtual void CreateEmptyMipChain();
 
 	~ScratchImage();
 
@@ -48,4 +50,5 @@ private:
 	DirectX::ScratchImage* scratchImage_;
 };
 
+}
 }

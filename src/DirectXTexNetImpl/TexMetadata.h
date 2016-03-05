@@ -4,7 +4,10 @@ using namespace System;
 
 namespace DirectXTexNet
 {
+namespace Impl
+{
 
+/*
 // Managed mirror of DirectX::TEX_DIMENSION
 public enum class TexDimension : UInt32
 {
@@ -12,7 +15,6 @@ public enum class TexDimension : UInt32
 	Texture2D = 3,
 	Texture3D = 4,
 };
-
 
 // Managed mirror of DirectX::TexMetadata
 public value struct TexMetadata
@@ -41,5 +43,24 @@ internal:
 	{
 	}
 };
+*/
 
+inline TexMetadata TexMetadataFromNative(DirectX::TexMetadata native)
+{
+	TexMetadata result;
+
+	result.width = native.width;
+	result.height = native.height;
+	result.depth = native.depth;
+	result.arraySize = native.arraySize;
+	result.mipLevels = native.mipLevels;
+	result.miscFlags = native.miscFlags;
+	result.miscFlags2 = native.miscFlags2;
+	result.format = native.format;
+	result.dimension = (TexDimension)native.dimension;
+
+	return result;
+}
+
+}
 }

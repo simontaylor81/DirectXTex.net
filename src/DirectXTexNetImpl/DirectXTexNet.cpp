@@ -9,11 +9,13 @@ using namespace System::Runtime::InteropServices;
 
 namespace DirectXTexNet
 {
+namespace Impl
+{
 
 //--------------------------------------------------------------------------------------------------
 // Load an image from a DDS file.
 //--------------------------------------------------------------------------------------------------
-ScratchImage^ DirectXTex::LoadFromDDSFile(String^ filename)
+IScratchImage^ DirectXTex::LoadFromDDSFile(String^ filename)
 {
 	// Get C rep of filename string.
 	pin_ptr<const wchar_t> filenameCStr = PtrToStringChars(filename);
@@ -31,7 +33,7 @@ ScratchImage^ DirectXTex::LoadFromDDSFile(String^ filename)
 //--------------------------------------------------------------------------------------------------
 // Load an image from a file using WIC.
 //--------------------------------------------------------------------------------------------------
-ScratchImage^ DirectXTex::LoadFromWICFile(String^ filename)
+IScratchImage^ DirectXTex::LoadFromWICFile(String^ filename)
 {
 	// Get C rep of filename string.
 	pin_ptr<const wchar_t> filenameCStr = PtrToStringChars(filename);
@@ -49,7 +51,7 @@ ScratchImage^ DirectXTex::LoadFromWICFile(String^ filename)
 //--------------------------------------------------------------------------------------------------
 // Load an image from a TGA file.
 //--------------------------------------------------------------------------------------------------
-ScratchImage^ DirectXTex::LoadFromTGAFile(String^ filename)
+IScratchImage^ DirectXTex::LoadFromTGAFile(String^ filename)
 {
 	// Get C rep of filename string.
 	pin_ptr<const wchar_t> filenameCStr = PtrToStringChars(filename);
@@ -66,7 +68,7 @@ ScratchImage^ DirectXTex::LoadFromTGAFile(String^ filename)
 //--------------------------------------------------------------------------------------------------
 // Create a 2D texture from raw pixel data.
 //--------------------------------------------------------------------------------------------------
-ScratchImage^ DirectXTex::Create2D(IntPtr data, int pitch, int width, int height, unsigned int format)
+IScratchImage^ DirectXTex::Create2D(IntPtr data, int pitch, int width, int height, unsigned int format)
 {
 	// Construct Image representation.
 	DirectX::Image image;
@@ -87,4 +89,5 @@ ScratchImage^ DirectXTex::Create2D(IntPtr data, int pitch, int width, int height
 	return result;
 }
 
+}
 }

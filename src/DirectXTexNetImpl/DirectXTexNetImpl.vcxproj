@@ -147,7 +147,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectXTexNet.h" />
@@ -167,6 +166,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DirectXTexInterfaces\DirectXTexInterfaces.csproj">
+      <Project>{98495bf2-ded3-4e08-b965-c12d471bc86f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\DirectXTex\DirectXTex\DirectXTex_Desktop_2015.vcxproj">
       <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
     </ProjectReference>

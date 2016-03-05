@@ -12,6 +12,13 @@ namespace DirectXTexNet.Test
 {
 	public class LoadImageTests
 	{
+		// TEMP
+		[Test]
+		public void WrapperTest()
+		{
+			Assert.Throws<NotImplementedException>(() => DirectXTex.LoadFromWICFile(""));
+		}
+
 		// Test for WIC loading path, which we can compare to the result of loading using System.Drawing.
 		[TestCase("ThisIsATest.png")]
 		[TestCase("ThisIsATest.bmp")]
@@ -70,7 +77,7 @@ namespace DirectXTexNet.Test
 			}
 		}
 
-		private void AssertEqual(ScratchImage image, Bitmap expected)
+		private void AssertEqual(IScratchImage image, Bitmap expected)
 		{
 			// Check various meta-data.
 			var metaData = image.MetaData;
